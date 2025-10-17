@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,6 +46,7 @@
             color: var(--light-text);
         }
 
+        /* STOCKWISE Background Logo */
         .background-logo {
             position: fixed;
             top: 0;
@@ -69,14 +70,17 @@
             transform: rotate(-5deg);
             user-select: none;
             white-space: nowrap;
+            text-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
         }
 
         body.light-mode .stockwise-text {
             color: #1a1d29;
         }
 
+        /* Login Container */
         .login-container {
             background: var(--dark-card);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--dark-border);
             padding: 50px 40px;
             border-radius: 25px;
@@ -103,10 +107,19 @@
             letter-spacing: 3px;
         }
 
+        body.light-mode .login-container h1 {
+            color: var(--light-text);
+        }
+
         .login-container p {
             color: var(--dark-text-secondary);
             margin-bottom: 35px;
             font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        body.light-mode .login-container p {
+            color: var(--light-text-secondary);
         }
 
         .form-group {
@@ -119,6 +132,11 @@
             margin-bottom: 8px;
             color: var(--dark-text);
             font-weight: 600;
+            font-size: 1em;
+        }
+
+        body.light-mode .form-group label {
+            color: var(--light-text);
         }
 
         .form-group input {
@@ -132,10 +150,29 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .form-group input {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
+
+        .form-group input::placeholder {
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .form-group input::placeholder {
+            color: var(--light-text-secondary);
+        }
+
         .form-group input:focus {
             outline: none;
             border-color: var(--accent-primary);
+            background: var(--dark-card);
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        body.light-mode .form-group input:focus {
+            background: var(--light-card);
         }
 
         .btn {
@@ -146,24 +183,39 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
+            margin-bottom: 15px;
             width: 100%;
         }
 
         .btn-primary:hover {
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
+        /* Dashboard Styles */
         .dashboard-container {
             display: none;
+            width: 100%;
+            background: var(--dark-card);
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
             min-height: 100vh;
         }
 
+        body.light-mode .dashboard-container {
+            background: var(--light-card);
+        }
+
+        /* Top Navigation Bar */
         .top-nav {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
@@ -174,6 +226,13 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .nav-brand h1 {
@@ -206,13 +265,86 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .user-role {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area */
         .content {
             padding: 30px;
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 30px;
+            min-height: calc(100vh - 80px);
         }
 
+        @media (max-width: 1200px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: var(--dark-bg);
+            padding: 25px;
+            border-radius: 15px;
+            height: fit-content;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+            border: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .sidebar {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+        }
+
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -227,6 +359,11 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
 
         .stat-number {
@@ -235,6 +372,12 @@
             margin-bottom: 5px;
         }
 
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Charts Section */
         .charts-section {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -242,23 +385,53 @@
             margin-bottom: 25px;
         }
 
+        @media (max-width: 992px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .chart-container {
             background: var(--dark-bg);
             padding: 25px;
             border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 1px solid var(--dark-border);
         }
 
+        body.light-mode .chart-container {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+        }
+
         .chart-title {
+            color: var(--dark-text);
             margin-bottom: 20px;
             font-size: 1.4em;
             font-weight: 600;
         }
 
+        body.light-mode .chart-title {
+            color: var(--light-text);
+        }
+
+        .chart-canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .feature-card {
@@ -266,21 +439,58 @@
             padding: 25px;
             border-radius: 15px;
             border-left: 5px solid var(--accent-primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             cursor: pointer;
             transition: all 0.3s ease;
             border: 1px solid var(--dark-border);
         }
 
+        body.light-mode .feature-card {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+        }
+
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border-color: var(--accent-primary);
         }
 
+        .feature-icon {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--accent-primary);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-card h3 {
+            color: var(--dark-text);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        body.light-mode .feature-card h3 {
+            color: var(--light-text);
+        }
+
+        .feature-card p {
+            color: var(--dark-text-secondary);
+            line-height: 1.5;
+        }
+
+        body.light-mode .feature-card p {
+            color: var(--light-text-secondary);
+        }
+
+        /* WHITE Products Table */
         .products-section {
             background: white;
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .section-header {
@@ -288,42 +498,108 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
         }
 
         .products-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .products-table th,
+        .products-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
         }
 
         .products-table th {
             background: #34495e;
             color: white;
-            padding: 18px;
-            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            position: sticky;
+            top: 0;
+        }
+
+        .products-table tr:hover {
+            background: #f8f9fa;
         }
 
         .products-table td {
-            padding: 18px;
-            border-bottom: 1px solid #ecf0f1;
             color: #2c3e50;
         }
 
         .low-stock {
             color: #e74c3c;
             font-weight: bold;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
 
         .in-stock {
             color: #27ae60;
             font-weight: bold;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
 
-        .sidebar {
-            background: var(--dark-bg);
-            padding: 25px;
-            border-radius: 15px;
-            height: fit-content;
-            border: 1px solid var(--dark-border);
+        .action-cell {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            margin-top: 20px;
         }
 
         .action-btn {
@@ -335,9 +611,46 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            transition: all 0.3s ease;
             font-weight: 600;
+            font-size: 1em;
         }
 
+        .action-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            color: #2c3e50;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            color: #2c3e50;
+        }
+
+        /* Notification */
         .notification {
             position: fixed;
             top: 50%;
@@ -349,31 +662,461 @@
             border-radius: 10px;
             display: none;
             z-index: 1001;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             font-weight: 600;
+            max-width: 80%;
+            text-align: center;
         }
 
         .error {
             background: #e74c3c;
         }
 
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--dark-card);
+            padding: 35px;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            margin: 50px auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .modal-content {
+            background: var(--light-card);
+            border: 1px solid var(--light-border);
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: var(--dark-text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--dark-text);
+        }
+
+        body.light-mode .close-btn {
+            color: var(--light-text-secondary);
+        }
+
+        body.light-mode .close-btn:hover {
+            color: var(--light-text);
+        }
+
+        .modal h2 {
+            color: var(--dark-text);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        body.light-mode .modal h2 {
+            color: var(--light-text);
+        }
+
+        /* DARK FORM ELEMENTS */
+        .form-group select,
+        .form-group textarea,
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--dark-border);
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        body.light-mode .form-group select,
+        body.light-mode .form-group textarea,
+        body.light-mode .form-group input {
+            border: 2px solid var(--light-border);
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .form-group input:focus {
+            border-color: var(--accent-primary);
+            outline: none;
+            background: var(--dark-card);
+        }
+
+        body.light-mode .form-group select:focus,
+        body.light-mode .form-group textarea:focus,
+        body.light-mode .form-group input:focus {
+            background: var(--light-card);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Fix for select dropdowns */
+        .form-group select option {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+            padding: 10px;
+        }
+
+        body.light-mode .form-group select option {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        /* Role-based restrictions */
+        .restricted {
+            opacity: 0.5;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .restricted::after {
+            content: "Access Restricted";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        /* Orders Table */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .orders-table th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95em;
+            position: sticky;
+            top: 0;
+        }
+
+        .orders-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .orders-table td {
+            color: #2c3e50;
+        }
+
+        .status-pending {
+            color: #f39c12;
+            font-weight: bold;
+            background: rgba(243, 156, 18, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .status-completed {
+            color: #27ae60;
+            font-weight: bold;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .status-returned {
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* Users Table */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .users-table th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95em;
+            position: sticky;
+            top: 0;
+        }
+
+        .users-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .users-table td {
+            color: #2c3e50;
+        }
+
+        .role-admin {
+            color: #9b59b6;
+            font-weight: bold;
+            background: rgba(155, 89, 182, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .role-manager {
+            color: #3498db;
+            font-weight: bold;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .role-staff {
+            color: #2ecc71;
+            font-weight: bold;
+            background: rgba(46, 204, 113, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* Activity Log */
+        .activity-log {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--dark-border);
+            display: flex;
+            gap: 15px;
+        }
+
+        body.light-mode .activity-item {
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-text);
+        }
+
+        body.light-mode .activity-title {
+            color: var(--light-text);
+        }
+
+        .activity-time {
+            font-size: 0.85em;
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .activity-time {
+            color: var(--light-text-secondary);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        body.light-mode .tabs {
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark-text-secondary);
+        }
+
+        body.light-mode .tab {
+            color: var(--light-text-secondary);
+        }
+
+        .tab.active {
+            color: var(--accent-primary);
+            border-bottom: 3px solid var(--accent-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Mobile Navigation */
         @media (max-width: 768px) {
+            .top-nav {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-menu {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .nav-item {
+                white-space: nowrap;
+            }
+            
             .content {
-                grid-template-columns: 1fr;
+                padding: 20px;
             }
-            .charts-section {
-                grid-template-columns: 1fr;
-            }
+            
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .search-box, .filter-select {
+                min-width: 100%;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: var(--dark-bg);
+            border: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .theme-toggle {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+        }
+
+        .theme-toggle span {
+            color: var(--dark-text);
+        }
+
+        body.light-mode .theme-toggle span {
+            color: var(--light-text);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--dark-border);
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .toggle-switch:after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--accent-primary);
+        }
+
+        .toggle-switch.active:after {
+            left: 32px;
+        }
+
+        /* Reorder Button */
+        .btn-reorder {
+            background: #9b59b6;
+            color: white;
+        }
+
+        .btn-reorder:hover {
+            background: #8e44ad;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
+    <!-- STOCKWISE Background Logo -->
     <div class="background-logo">
         <div class="stockwise-text">STOCKWISE</div>
     </div>
 
+    <!-- Glass Effect Login Container -->
     <div class="login-container" id="loginContainer">
         <h1>STOCKWISE</h1>
         <p>Professional Inventory Management System</p>
@@ -393,7 +1136,9 @@
         </form>
     </div>
 
+    <!-- Dashboard -->
     <div class="dashboard-container" id="dashboardContainer">
+        <!-- Top Navigation Bar -->
         <div class="top-nav">
             <div class="nav-brand">
                 <h1>STOCKWISE</h1>
@@ -412,16 +1157,38 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span>Orders</span>
                 </div>
+                <div class="nav-item" onclick="showUsersView()">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </div>
+                <div class="nav-item" onclick="showAnalyticsView()">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </div>
+                <div class="nav-item" onclick="showActivityView()">
+                    <i class="fas fa-history"></i>
+                    <span>Activity</span>
+                </div>
+                <div class="nav-item" onclick="showSettingsView()">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
             </div>
             
             <div class="user-info">
-                <button class="btn btn-primary" onclick="logout()">Logout</button>
+                <div class="user-details">
+                    <div class="user-name" id="userDisplayName">Loading...</div>
+                    <div class="user-role" id="userRoleDisplay">Role: Loading...</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
         </div>
 
         <div class="content">
             <div class="main-content">
+                <!-- Dashboard View -->
                 <div id="dashboardView">
+                    <!-- Statistics -->
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-number" id="totalProducts">0</div>
@@ -435,101 +1202,632 @@
                             <div class="stat-number" id="lowStock">0</div>
                             <div class="stat-label">Low Stock Items</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalCategories">0</div>
+                            <div class="stat-label">Product Categories</div>
+                        </div>
                     </div>
 
+                    <!-- Charts Section -->
                     <div class="charts-section">
                         <div class="chart-container">
-                            <div class="chart-title">Inventory Overview</div>
-                            <canvas id="categoryChart" height="300"></canvas>
+                            <div class="chart-title">Inventory Value by Category (ZAR)</div>
+                            <canvas id="categoryChart" class="chart-canvas"></canvas>
                         </div>
                         <div class="chart-container">
                             <div class="chart-title">Stock Distribution</div>
-                            <canvas id="stockChart" height="300"></canvas>
+                            <canvas id="stockChart" class="chart-canvas"></canvas>
                         </div>
                     </div>
 
+                    <!-- Features Grid -->
                     <div class="features-grid">
                         <div class="feature-card" onclick="showProductsView()">
-                            <div class="feature-icon">📦</div>
-                            <h3>View Products</h3>
-                            <p>Browse complete inventory with search and filtering</p>
+                            <div class="feature-icon">View Products</div>
+                            <h3>View All Products</h3>
+                            <p>Browse complete inventory with advanced search, filtering and sorting capabilities</p>
                         </div>
+
                         <div class="feature-card" onclick="showAddModal()">
-                            <div class="feature-icon">➕</div>
-                            <h3>Add Product</h3>
-                            <p>Add new items to your inventory</p>
+                            <div class="feature-icon">Add Product</div>
+                            <h3>Add New Product</h3>
+                            <p>Add new items to inventory with comprehensive product details and specifications</p>
                         </div>
-                        <div class="feature-card" onclick="generateReports()">
-                            <div class="feature-icon">📊</div>
+
+                        <div class="feature-card" onclick="showOrdersView()">
+                            <div class="feature-icon">Manage Orders</div>
+                            <h3>Order Management</h3>
+                            <p>Process orders, track returns, and reorder returned products with discounted pricing</p>
+                        </div>
+
+                        <div class="feature-card" onclick="showAnalyticsView()">
+                            <div class="feature-icon">Analytics</div>
                             <h3>Generate Reports</h3>
-                            <p>Create inventory and sales reports</p>
+                            <p>Create detailed inventory, sales, and performance analytics reports</p>
+                        </div>
+
+                        <div class="feature-card" onclick="exportData()">
+                            <div class="feature-icon">Data Export</div>
+                            <h3>Export Data</h3>
+                            <p>Export inventory data to CSV, Excel, PDF formats for external analysis</p>
+                        </div>
+
+                        <div class="feature-card" onclick="manageSuppliers()">
+                            <div class="feature-icon">Suppliers</div>
+                            <h3>Supplier Management</h3>
+                            <p>Manage supplier relationships, performance metrics and contact information</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Products View -->
                 <div class="products-section" id="productsView" style="display: none;">
                     <div class="section-header">
-                        <h3>Inventory Management</h3>
-                        <button class="btn btn-primary" onclick="showAddModal()">Add Product</button>
+                        <h3>Current Inventory Overview</h3>
+                        <button class="btn btn-primary" onclick="showAddModal()" style="width: auto; padding: 10px 20px;">Add New Product</button>
                     </div>
-                    <table class="products-table">
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsTableBody">
-                            <tr>
-                                <td>Samsung Galaxy S23</td>
-                                <td>Electronics</td>
-                                <td>R 18,999.99</td>
-                                <td>25</td>
-                                <td><span class="in-stock">In Stock</span></td>
-                            </tr>
-                            <tr>
-                                <td>MTN 4G Router</td>
-                                <td>Electronics</td>
-                                <td>R 899.99</td>
-                                <td>45</td>
-                                <td><span class="in-stock">In Stock</span></td>
-                            </tr>
-                            <tr>
-                                <td>Food Hamper</td>
-                                <td>Food</td>
-                                <td>R 1,499.99</td>
-                                <td>5</td>
-                                <td><span class="low-stock">Low Stock</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="search-filter">
+                        <input type="text" id="searchBox" class="search-box" placeholder="Search products..." onkeyup="filterProducts()">
+                        <select id="categoryFilter" class="filter-select" onchange="filterProducts()">
+                            <option value="">All Categories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Food">Food & Beverages</option>
+                            <option value="Automotive">Automotive</option>
+                            <option value="Office">Office Supplies</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Industrial">Industrial</option>
+                        </select>
+                        <select id="stockFilter" class="filter-select" onchange="filterProducts()">
+                            <option value="">All Stock Levels</option>
+                            <option value="low">Low Stock (<10)</option>
+                            <option value="normal">Normal Stock</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table class="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>SKU Code</th>
+                                    <th>Category</th>
+                                    <th>Price (ZAR)</th>
+                                    <th>Quantity</th>
+                                    <th>Supplier</th>
+                                    <th>Stock Value</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Products loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Orders View -->
+                <div class="products-section" id="ordersView" style="display: none;">
+                    <div class="section-header">
+                        <h3>Order Management</h3>
+                        <button class="btn btn-primary" onclick="showAddOrderModal()" style="width: auto; padding: 10px 20px;">Add New Order</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total (ZAR)</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Users View -->
+                <div class="products-section" id="usersView" style="display: none;">
+                    <div class="section-header">
+                        <h3>User Management</h3>
+                        <button class="btn btn-primary" onclick="showAddUserModal()" style="width: auto; padding: 10px 20px;">Add New User</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Last Login</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Users loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Analytics View -->
+                <div class="products-section" id="analyticsView" style="display: none;">
+                    <div class="section-header">
+                        <h3>Advanced Analytics</h3>
+                        <button class="btn btn-primary" onclick="generateAnalyticsReport()" style="width: auto; padding: 10px 20px;">Generate Report</button>
+                    </div>
+                    <div class="charts-section">
+                        <div class="chart-container">
+                            <div class="chart-title">Sales Performance (Last 30 Days)</div>
+                            <canvas id="salesChart" class="chart-canvas"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Inventory Turnover</div>
+                            <canvas id="turnoverChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="charts-section">
+                        <div class="chart-container">
+                            <div class="chart-title">Product Performance</div>
+                            <canvas id="performanceChart" class="chart-canvas"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Supplier Performance</div>
+                            <canvas id="supplierChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity View -->
+                <div class="products-section" id="activityView" style="display: none;">
+                    <div class="section-header">
+                        <h3>System Activity Log</h3>
+                        <button class="btn btn-primary" onclick="clearActivityLog()" style="width: auto; padding: 10px 20px;">Clear Log</button>
+                    </div>
+                    <div class="activity-log" id="activityLog">
+                        <!-- Activity items loaded here -->
+                    </div>
+                </div>
+
+                <!-- Settings View -->
+                <div class="products-section" id="settingsView" style="display: none;">
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchSettingsTab('general')">General</div>
+                        <div class="tab" onclick="switchSettingsTab('users')">User Management</div>
+                        <div class="tab" onclick="switchSettingsTab('notifications')">Notifications</div>
+                        <div class="tab" onclick="switchSettingsTab('security')">Security</div>
+                        <div class="tab" onclick="switchSettingsTab('appearance')">Appearance</div>
+                    </div>
+
+                    <div class="tab-content active" id="generalTab">
+                        <h3>General Settings</h3>
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" id="companyName" value="STOCKWISE">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <select id="currency">
+                                <option value="ZAR">South African Rand (ZAR)</option>
+                                <option value="USD">US Dollar (USD)</option>
+                                <option value="EUR">Euro (EUR)</option>
+                                <option value="GBP">British Pound (GBP)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lowStockThreshold">Low Stock Threshold</label>
+                            <input type="number" id="lowStockThreshold" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="discountPercentage">Returned Product Discount (%)</label>
+                            <input type="number" id="discountPercentage" value="10" min="1" max="50">
+                        </div>
+                        <button class="btn btn-primary" onclick="saveGeneralSettings()">Save Settings</button>
+                    </div>
+
+                    <div class="tab-content" id="usersTab">
+                        <h3>User Management</h3>
+                        <p>Add, edit, and manage system users with role-based permissions.</p>
+                        <button class="btn btn-primary" onclick="showAddUserModal()" style="width: auto; padding: 10px 20px; margin-bottom: 20px;">Add New User</button>
+                        <div class="table-container">
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full Name</th>
+                                        <th>Role</th>
+                                        <th>Last Active</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="settingsUsersTableBody">
+                                    <!-- Users loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="notificationsTab">
+                        <h3>Notification Settings</h3>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="emailNotifications" checked> Email Notifications
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="lowStockAlerts" checked> Low Stock Alerts
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="orderNotifications" checked> Order Notifications
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="systemAlerts" checked> System Alerts
+                            </label>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveNotificationSettings()">Save Settings</button>
+                    </div>
+
+                    <div class="tab-content" id="securityTab">
+                        <h3>Security Settings</h3>
+                        <div class="form-group">
+                            <label for="sessionTimeout">Session Timeout (minutes)</label>
+                            <input type="number" id="sessionTimeout" value="30">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordPolicy">Password Policy</label>
+                            <select id="passwordPolicy">
+                                <option value="standard">Standard (8+ characters)</option>
+                                <option value="strong">Strong (12+ characters with symbols)</option>
+                                <option value="very-strong">Very Strong (16+ characters with symbols)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="twoFactorAuth"> Enable Two-Factor Authentication
+                            </label>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSecuritySettings()">Save Settings</button>
+                    </div>
+
+                    <div class="tab-content" id="appearanceTab">
+                        <h3>Appearance Settings</h3>
+                        <div class="theme-toggle">
+                            <span>Dark Mode</span>
+                            <div class="toggle-switch" id="themeToggle"></div>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="accentColor">Accent Color</label>
+                            <select id="accentColor">
+                                <option value="#4361ee">Blue (Default)</option>
+                                <option value="#e74c3c">Red</option>
+                                <option value="#2ecc71">Green</option>
+                                <option value="#f39c12">Orange</option>
+                                <option value="#9b59b6">Purple</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fontSize">Font Size</label>
+                            <select id="fontSize">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveAppearanceSettings()">Save Settings</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <div class="sidebar">
                 <h3>Quick Actions</h3>
-                <button class="action-btn" onclick="showAddModal()">Add Product</button>
-                <button class="action-btn" onclick="showProductsView()">View Inventory</button>
-                <button class="action-btn" onclick="checkLowStock()">Low Stock Alert</button>
-                <button class="action-btn" onclick="exportData()">Export Data</button>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="showAddModal()">Add New Product</button>
+                    <button class="action-btn" onclick="showProductsView()">View Inventory</button>
+                    <button class="action-btn" onclick="checkLowStock()">Low Stock Alert</button>
+                    <button class="action-btn" onclick="generateStockReport()">Stock Report</button>
+                    <button class="action-btn" onclick="exportData()">Export Data</button>
+                    <button class="action-btn" onclick="refreshAllData()">Refresh Data</button>
+                </div>
+
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--dark-border);">
+                    <h3>System Information</h3>
+                    <p style="margin: 10px 0; color: var(--dark-text-secondary);"><strong>Location:</strong> Johannesburg Warehouse</p>
+                    <p style="margin: 10px 0; color: var(--dark-text-secondary);"><strong>Currency:</strong> South African Rand (ZAR)</p>
+                    <p style="margin: 10px 0; color: var(--dark-text-secondary);"><strong>Last Updated:</strong> <span id="lastUpdated">Just now</span></p>
+                    <p style="margin: 10px 0; color: var(--dark-text-secondary);"><strong>Data Points:</strong> <span id="dataPoints">0</span> records</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('addProductModal')">&times;</span>
+            <h2>Add New Product</h2>
+            <form id="addProductForm" onsubmit="addProduct(event)">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" placeholder="Enter product name" required>
+                </div>
+                <div class="form-group">
+                    <label for="productSKU">SKU Code</label>
+                    <input type="text" id="productSKU" placeholder="Enter SKU code" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing & Apparel</option>
+                        <option value="Food">Food & Beverages</option>
+                        <option value="Office">Office Supplies</option>
+                        <option value="Home">Home & Garden</option>
+                        <option value="Sports">Sports & Outdoor</option>
+                        <option value="Automotive">Automotive</option>
+                        <option value="Health">Health & Beauty</option>
+                        <option value="Industrial">Industrial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productSupplier">Supplier</label>
+                    <select id="productSupplier" required>
+                        <option value="">Select Supplier</option>
+                        <option value="MTN Group">MTN Group</option>
+                        <option value="Shoprite Holdings">Shoprite Holdings</option>
+                        <option value="Pick n Pay">Pick n Pay</option>
+                        <option value="Sasol Limited">Sasol Limited</option>
+                        <option value="Woolworths SA">Woolworths SA</option>
+                        <option value="Imperial Logistics">Imperial Logistics</option>
+                        <option value="Bidvest Group">Bidvest Group</option>
+                        <option value="AutoZone SA">AutoZone SA</option>
+                        <option value="Sports Co">Sports Co</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price (ZAR)</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" placeholder="Enter price" required>
+                </div>
+                <div class="form-group">
+                    <label for="productQuantity">Quantity</label>
+                    <input type="number" id="productQuantity" min="0" placeholder="Enter quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" rows="3" placeholder="Enter product description..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Add Product to Inventory</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Order Modal -->
+    <div id="addOrderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('addOrderModal')">&times;</span>
+            <h2>Create New Order</h2>
+            <form id="addOrderForm" onsubmit="addOrder(event)">
+                <div class="form-group">
+                    <label for="orderCustomer">Customer Name</label>
+                    <input type="text" id="orderCustomer" placeholder="Enter customer name" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderProduct">Product</label>
+                    <select id="orderProduct" required>
+                        <option value="">Select Product</option>
+                        <!-- Products loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="orderQuantity">Quantity</label>
+                    <input type="number" id="orderQuantity" min="1" placeholder="Enter quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderStatus">Status</label>
+                    <select id="orderStatus" required>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="returned">Returned</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Create Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reorder Modal -->
+    <div id="reorderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('reorderModal')">&times;</span>
+            <h2>Reorder Returned Product</h2>
+            <form id="reorderForm" onsubmit="processReorder(event)">
+                <div class="form-group">
+                    <label for="reorderProduct">Product</label>
+                    <input type="text" id="reorderProduct" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="reorderCustomer">Customer</label>
+                    <input type="text" id="reorderCustomer" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="reorderQuantity">Quantity</label>
+                    <input type="number" id="reorderQuantity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="originalPrice">Original Price (ZAR)</label>
+                    <input type="number" id="originalPrice" step="0.01" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="discountPercentage">Discount Percentage</label>
+                    <input type="number" id="reorderDiscount" step="1" min="1" max="50" value="10">
+                </div>
+                <div class="form-group">
+                    <label for="newPrice">New Price (ZAR)</label>
+                    <input type="number" id="newPrice" step="0.01" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="totalAmount">Total Amount (ZAR)</label>
+                    <input type="number" id="totalAmount" step="0.01" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Process Reorder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('addUserModal')">&times;</span>
+            <h2>Add New User</h2>
+            <form id="addUserForm" onsubmit="addUser(event)">
+                <div class="form-group">
+                    <label for="userUsername">Username</label>
+                    <input type="text" id="userUsername" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="userFullName">Full Name</label>
+                    <input type="text" id="userFullName" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" id="userPassword" placeholder="Enter password" required>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">Role</label>
+                    <select id="userRole" required>
+                        <option value="">Select Role</option>
+                        <option value="admin">Administrator</option>
+                        <option value="manager">Manager</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Add User</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
     <div id="notification" class="notification"></div>
 
     <script>
+        // User accounts with different roles and permissions
         const users = {
-            'prince': { password: 'Prince@2024', name: 'Prince', role: 'admin' },
-            'katlego': { password: 'Katlego#123', name: 'Katlego', role: 'manager' },
-            'tshireletso': { password: 'Tshire!789', name: 'Tshireletso', role: 'staff' }
+            'prince': { 
+                password: 'Prince@2024', 
+                name: 'Prince', 
+                role: 'admin',
+                permissions: ['view', 'add', 'edit', 'delete', 'reports', 'export', 'suppliers', 'users', 'orders', 'settings']
+            },
+            'katlego': { 
+                password: 'Katlego#123', 
+                name: 'Katlego', 
+                role: 'manager',
+                permissions: ['view', 'add', 'edit', 'reports', 'export', 'orders']
+            },
+            'tshireletso': { 
+                password: 'Tshire!789', 
+                name: 'Tshireletso', 
+                role: 'staff',
+                permissions: ['view', 'add']
+            },
+            'tefo': { 
+                password: 'Tefo$456', 
+                name: 'Tefo', 
+                role: 'staff',
+                permissions: ['view', 'add']
+            },
+            'mtnwarehouse': { 
+                password: 'MTN@Ware2024', 
+                name: 'MTN Warehouse SA', 
+                role: 'company',
+                permissions: ['view', 'reports']
+            },
+            'shopritejhb': { 
+                password: 'ShopRite#JHB', 
+                name: 'Shoprite Johannesburg', 
+                role: 'company',
+                permissions: ['view', 'reports']
+            }
         };
 
-        let currentUser = null;
+        // Sample product data
+        let products = JSON.parse(localStorage.getItem('stockwiseProducts')) || [
+            { id: 1, name: 'Samsung Galaxy S23', sku: 'ELEC-S23-001', category: 'Electronics', supplier: 'MTN Group', price: 18999.99, quantity: 25, description: 'Latest Samsung smartphone with 5G' },
+            { id: 2, name: 'MTN 4G Router', sku: 'ELEC-MTN-RT', category: 'Electronics', supplier: 'MTN Group', price: 899.99, quantity: 45, description: '4G LTE Mobile WiFi Router' },
+            { id: 3, name: 'Woolworths Food Hamper', sku: 'FOOD-WH-PRM', category: 'Food', supplier: 'Woolworths SA', price: 1499.99, quantity: 18, description: 'Premium food basket with local delicacies' },
+            { id: 4, name: 'Pick n Pay Grocery Pack', sku: 'FOOD-PNP-BSC', category: 'Food', supplier: 'Pick n Pay', price: 799.99, quantity: 67, description: 'Essential groceries package for family' },
+            { id: 5, name: 'Sasol Engine Oil 5L', sku: 'AUTO-SAS-OIL', category: 'Automotive', supplier: 'Sasol Limited', price: 289.50, quantity: 8, description: 'Premium synthetic engine oil 5L' },
+            { id: 6, name: 'Mining Safety Helmet', sku: 'IND-MIN-HLM', category: 'Industrial', supplier: 'Imperial Logistics', price: 345.00, quantity: 12, description: 'Industrial safety helmet with LED' }
+        ];
 
+        // Sample orders data
+        let orders = JSON.parse(localStorage.getItem('stockwiseOrders')) || [
+            { id: 1001, customer: 'John Smith', productId: 1, productName: 'Samsung Galaxy S23', quantity: 2, total: 37999.98, date: '2023-10-15', status: 'completed' },
+            { id: 1002, customer: 'Sarah Johnson', productId: 3, productName: 'Woolworths Food Hamper', quantity: 1, total: 1499.99, date: '2023-10-16', status: 'pending' },
+            { id: 1003, customer: 'Mike Williams', productId: 5, productName: 'Sasol Engine Oil 5L', quantity: 3, total: 868.50, date: '2023-10-17', status: 'returned' },
+            { id: 1004, customer: 'Emma Davis', productId: 2, productName: 'MTN 4G Router', quantity: 1, total: 899.99, date: '2023-10-18', status: 'completed' }
+        ];
+
+        // Sample activity log
+        let activityLog = JSON.parse(localStorage.getItem('stockwiseActivity')) || [
+            { id: 1, user: 'Prince', action: 'Logged in', time: new Date().toISOString() },
+            { id: 2, user: 'Prince', action: 'Added new product: Samsung Galaxy S23', time: new Date(Date.now() - 3600000).toISOString() },
+            { id: 3, user: 'Katlego', action: 'Updated product quantity: MTN 4G Router', time: new Date(Date.now() - 7200000).toISOString() },
+            { id: 4, user: 'Tshireletso', action: 'Created new order #1004', time: new Date(Date.now() - 10800000).toISOString() }
+        ];
+
+        let currentUser = null;
+        let categoryChart = null;
+        let stockChart = null;
+        let salesChart = null;
+        let turnoverChart = null;
+        let performanceChart = null;
+        let supplierChart = null;
+        let filteredProducts = [...products];
+        let currentReorderOrder = null;
+
+        // Check login status
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showDashboard();
+            }
+            
+            // Initialize theme
+            const savedTheme = localStorage.getItem('stockwiseTheme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeToggle').classList.add('active');
+            }
+            
+            // Initialize theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Initialize reorder discount calculation
+            document.getElementById('reorderDiscount').addEventListener('input', calculateReorderPrice);
+            document.getElementById('reorderQuantity').addEventListener('input', calculateReorderPrice);
+        });
+
+        // Login handler
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -537,112 +1835,1165 @@
             const password = document.getElementById('password').value;
             
             if (users[username] && users[username].password === password) {
-                currentUser = users[username];
+                currentUser = { 
+                    username: username, 
+                    name: users[username].name, 
+                    role: users[username].role,
+                    permissions: users[username].permissions
+                };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Log activity
+                logActivity(`${currentUser.name} logged in`);
+                
                 showDashboard();
-                showNotification('Welcome ' + currentUser.name + ' to STOCKWISE!');
+                showNotification('Welcome ' + currentUser.name + ' to STOCKWISE Management System');
             } else {
-                showNotification('Invalid credentials!', true);
+                showNotification('Invalid credentials. Please check your username and password.', true);
             }
         });
 
         function showDashboard() {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('dashboardContainer').style.display = 'block';
-            updateStatistics();
+            updateUserDisplay();
+            loadProducts();
+            loadOrders();
+            loadUsers();
+            loadActivityLog();
+            updateLastUpdated();
             initializeCharts();
+            applyRoleBasedPermissions();
+            showDashboardView();
         }
 
-        function showDashboardView() {
-            document.getElementById('dashboardView').style.display = 'block';
-            document.getElementById('productsView').style.display = 'none';
+        function updateUserDisplay() {
+            document.getElementById('userDisplayName').textContent = currentUser.name;
+            document.getElementById('userRoleDisplay').textContent = 'Role: ' + currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1);
         }
 
-        function showProductsView() {
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('productsView').style.display = 'block';
-        }
+        function applyRoleBasedPermissions() {
+            const role = currentUser.role;
+            const permissions = currentUser.permissions;
 
-        function showAddModal() {
-            showNotification('Add Product feature would open here');
-        }
-
-        function checkLowStock() {
-            showNotification('3 items are low in stock');
-        }
-
-        function exportData() {
-            showNotification('Data exported successfully!');
-        }
-
-        function generateReports() {
-            showNotification('Report generated successfully!');
+            // Apply restrictions based on role
+            if (!permissions.includes('add')) {
+                document.querySelector('.feature-card:nth-child(2)').classList.add('restricted');
+            }
+            if (!permissions.includes('edit')) {
+                document.querySelector('.feature-card:nth-child(3)').classList.add('restricted');
+            }
+            if (!permissions.includes('reports')) {
+                document.querySelector('.feature-card:nth-child(4)').classList.add('restricted');
+            }
+            if (!permissions.includes('export')) {
+                document.querySelector('.feature-card:nth-child(5)').classList.add('restricted');
+            }
+            if (!permissions.includes('suppliers')) {
+                document.querySelector('.feature-card:nth-child(6)').classList.add('restricted');
+            }
         }
 
         function logout() {
+            // Log activity
+            logActivity(`${currentUser.name} logged out`);
+            
             currentUser = null;
+            localStorage.removeItem('currentUser');
             document.getElementById('dashboardContainer').style.display = 'none';
             document.getElementById('loginContainer').style.display = 'block';
             document.getElementById('loginForm').reset();
             showNotification('Logged out successfully');
         }
 
-        function updateStatistics() {
-            document.getElementById('totalProducts').textContent = '156';
-            document.getElementById('totalValue').textContent = 'R 1,245,678.00';
-            document.getElementById('lowStock').textContent = '12';
-        }
-
+        // Initialize Charts
         function initializeCharts() {
-            // Category Chart
+            // Destroy existing charts if they exist
+            if (categoryChart) categoryChart.destroy();
+            if (stockChart) stockChart.destroy();
+            if (salesChart) salesChart.destroy();
+            if (turnoverChart) turnoverChart.destroy();
+            if (performanceChart) performanceChart.destroy();
+            if (supplierChart) supplierChart.destroy();
+
+            // Category Value Chart
             const categoryCtx = document.getElementById('categoryChart').getContext('2d');
-            new Chart(categoryCtx, {
+            const categoryData = getCategoryValueData();
+            
+            categoryChart = new Chart(categoryCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Electronics', 'Food', 'Automotive', 'Office', 'Clothing'],
+                    labels: categoryData.labels,
                     datasets: [{
                         label: 'Inventory Value (ZAR)',
-                        data: [450000, 280000, 195000, 175000, 145678],
-                        backgroundColor: '#4361ee'
+                        data: categoryData.values,
+                        backgroundColor: [
+                            '#4361ee', '#3a0ca3', '#4cc9f0', '#7209b7',
+                            '#4895ef', '#560bad', '#3f37c9', '#480ca8'
+                        ],
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `R ${context.raw.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'R ' + value.toLocaleString();
+                                }
+                            }
                         }
                     }
                 }
             });
 
-            // Stock Chart
+            // Stock Distribution Pie Chart
             const stockCtx = document.getElementById('stockChart').getContext('2d');
-            new Chart(stockCtx, {
+            const stockData = getStockDistributionData();
+            
+            stockChart = new Chart(stockCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['In Stock', 'Low Stock', 'Out of Stock'],
+                    labels: stockData.labels,
                     datasets: [{
-                        data: [132, 12, 12],
-                        backgroundColor: ['#27ae60', '#f39c12', '#e74c3c']
+                        data: stockData.values,
+                        backgroundColor: [
+                            '#4361ee', '#3a0ca3', '#4cc9f0', '#7209b7',
+                            '#4895ef', '#560bad', '#3f37c9', '#480ca8'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#1a1d29'
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 }
             });
+
+            // Sales Performance Chart
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            salesChart = new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 10', 'Day 11', 'Day 12', 'Day 13', 'Day 14', 'Day 15', 'Day 16', 'Day 17', 'Day 18', 'Day 19', 'Day 20', 'Day 21', 'Day 22', 'Day 23', 'Day 24', 'Day 25', 'Day 26', 'Day 27', 'Day 28', 'Day 29', 'Day 30'],
+                    datasets: [{
+                        label: 'Sales (ZAR)',
+                        data: [12000, 19000, 15000, 25000, 22000, 30000, 28000, 35000, 30000, 40000, 38000, 42000, 45000, 50000, 48000, 52000, 55000, 58000, 60000, 62000, 65000, 68000, 70000, 72000, 75000, 78000, 80000, 82000, 85000, 90000],
+                        borderColor: '#4361ee',
+                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `R ${context.raw.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'R ' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Inventory Turnover Chart
+            const turnoverCtx = document.getElementById('turnoverChart').getContext('2d');
+            turnoverChart = new Chart(turnoverCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Turnover Rate',
+                        data: [2.5, 2.8, 3.1, 2.9, 3.2, 3.5, 3.3, 3.6, 3.4, 3.7, 3.9, 4.2],
+                        backgroundColor: '#3a0ca3',
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Turnover Rate'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Product Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            performanceChart = new Chart(performanceCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Sales', 'Profit Margin', 'Customer Rating', 'Inventory Turnover', 'Market Share'],
+                    datasets: [
+                        {
+                            label: 'Samsung Galaxy S23',
+                            data: [85, 80, 90, 75, 70],
+                            backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                            borderColor: '#4361ee',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'MTN 4G Router',
+                            data: [70, 65, 80, 85, 60],
+                            backgroundColor: 'rgba(58, 12, 163, 0.2)',
+                            borderColor: '#3a0ca3',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+
+            // Supplier Performance Chart
+            const supplierCtx = document.getElementById('supplierChart').getContext('2d');
+            supplierChart = new Chart(supplierCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['MTN Group', 'Shoprite', 'Pick n Pay', 'Sasol', 'Woolworths'],
+                    datasets: [{
+                        data: [35, 25, 20, 10, 10],
+                        backgroundColor: [
+                            '#4361ee', '#3a0ca3', '#4cc9f0', '#7209b7', '#4895ef'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function getCategoryValueData() {
+            const categories = {};
+            products.forEach(product => {
+                const value = product.price * product.quantity;
+                if (categories[product.category]) {
+                    categories[product.category] += value;
+                } else {
+                    categories[product.category] = value;
+                }
+            });
+
+            return {
+                labels: Object.keys(categories),
+                values: Object.values(categories)
+            };
+        }
+
+        function getStockDistributionData() {
+            const totalProducts = products.length;
+            const lowStock = products.filter(p => p.quantity < 10).length;
+            const mediumStock = products.filter(p => p.quantity >= 10 && p.quantity <= 50).length;
+            const highStock = products.filter(p => p.quantity > 50).length;
+            const outOfStock = products.filter(p => p.quantity === 0).length;
+
+            return {
+                labels: ['Low Stock (<10)', 'Medium Stock (10-50)', 'High Stock (>50)', 'Out of Stock'],
+                values: [lowStock, mediumStock, highStock, outOfStock]
+            };
+        }
+
+        // PRODUCT MANAGEMENT FUNCTIONS
+        function loadProducts() {
+            filteredProducts = [...products];
+            updateStatistics();
+            renderProductsTable();
+        }
+
+        function updateStatistics() {
+            document.getElementById('totalProducts').textContent = products.length;
+            
+            const totalValue = products.reduce((sum, product) => sum + (product.price * product.quantity), 0);
+            document.getElementById('totalValue').textContent = 'R ' + totalValue.toLocaleString('en-ZA', {minimumFractionDigits: 2});
+            
+            const lowStockCount = products.filter(p => p.quantity < 10).length;
+            document.getElementById('lowStock').textContent = lowStockCount;
+
+            const categories = [...new Set(products.map(p => p.category))];
+            document.getElementById('totalCategories').textContent = categories.length;
+
+            document.getElementById('dataPoints').textContent = products.length;
+        }
+
+        function renderProductsTable() {
+            const tbody = document.getElementById('productsTableBody');
+            tbody.innerHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const status = product.quantity < 10 ? 'Low Stock' : 'In Stock';
+                const statusClass = product.quantity < 10 ? 'low-stock' : 'in-stock';
+                const stockValue = product.price * product.quantity;
+                const row = `<tr>
+                    <td><strong>${product.name}</strong></td>
+                    <td>${product.sku}</td>
+                    <td>${product.category}</td>
+                    <td><strong>R ${product.price.toLocaleString('en-ZA', {minimumFractionDigits: 2})}</strong></td>
+                    <td>${product.quantity}</td>
+                    <td>${product.supplier}</td>
+                    <td><strong>R ${stockValue.toLocaleString('en-ZA', {minimumFractionDigits: 2})}</strong></td>
+                    <td><span class="${statusClass}">${status}</span></td>
+                    <td class="action-cell">
+                        <button class="btn-small btn-edit" onclick="editProduct(${product.id})">Edit</button>
+                        <button class="btn-small btn-delete" onclick="deleteProduct(${product.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const stockFilter = document.getElementById('stockFilter').value;
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.sku.toLowerCase().includes(searchTerm) ||
+                                    product.supplier.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || product.category === categoryFilter;
+                const matchesStock = !stockFilter || 
+                    (stockFilter === 'low' && product.quantity < 10) ||
+                    (stockFilter === 'normal' && product.quantity >= 10);
+
+                return matchesSearch && matchesCategory && matchesStock;
+            });
+
+            renderProductsTable();
+        }
+
+        function updateLastUpdated() {
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = now.toLocaleString('en-ZA');
+        }
+
+        // FEATURE FUNCTIONS
+        function showAddModal() {
+            if (!currentUser.permissions.includes('add')) {
+                showNotification('Access denied: You do not have permission to add products', true);
+                return;
+            }
+            document.getElementById('addProductModal').style.display = 'block';
+        }
+
+        function editProducts() {
+            if (!currentUser.permissions.includes('edit')) {
+                showNotification('Access denied: You do not have permission to edit products', true);
+                return;
+            }
+            showNotification('Click the Edit button next to any product to modify it');
+        }
+
+        function editProduct(productId) {
+            if (!currentUser.permissions.includes('edit')) {
+                showNotification('Access denied: You do not have permission to edit products', true);
+                return;
+            }
+            // Edit functionality would go here
+            showNotification('Edit product functionality would open here for product ID: ' + productId);
+        }
+
+        function deleteProduct(productId) {
+            if (!currentUser.permissions.includes('delete')) {
+                showNotification('Access denied: You do not have permission to delete products', true);
+                return;
+            }
+            if (confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
+                products = products.filter(p => p.id !== productId);
+                localStorage.setItem('stockwiseProducts', JSON.stringify(products));
+                loadProducts();
+                initializeCharts();
+                
+                // Log activity
+                logActivity(`${currentUser.name} deleted product ID: ${productId}`);
+                
+                showNotification('Product deleted successfully');
+            }
+        }
+
+        function generateReports() {
+            if (!currentUser.permissions.includes('reports')) {
+                showNotification('Access denied: You do not have permission to generate reports', true);
+                return;
+            }
+            const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+            const avgPrice = totalValue / products.reduce((sum, p) => sum + p.quantity, 0);
+            const lowStockCount = products.filter(p => p.quantity < 10).length;
+            
+            showNotification(`📊 Report Generated: ${products.length} products, Total Value: R ${totalValue.toLocaleString('en-ZA', {minimumFractionDigits: 2})}, ${lowStockCount} low stock items`);
+        }
+
+        function exportData() {
+            if (!currentUser.permissions.includes('export')) {
+                showNotification('Access denied: You do not have permission to export data', true);
+                return;
+            }
+            const headers = ['Name', 'SKU', 'Category', 'Supplier', 'Price (ZAR)', 'Quantity', 'Stock Value (ZAR)', 'Status'];
+            const csvData = products.map(product => [
+                `"${product.name}"`,
+                product.sku,
+                product.category,
+                product.supplier,
+                product.price,
+                product.quantity,
+                (product.price * product.quantity).toFixed(2),
+                product.quantity < 10 ? 'Low Stock' : 'In Stock'
+            ]);
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += headers.join(',') + '\n';
+            csvData.forEach(row => {
+                csvContent += row.join(',') + '\n';
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "stockwise_inventory_export.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Inventory data exported to CSV successfully');
+        }
+
+        function manageSuppliers() {
+            if (!currentUser.permissions.includes('suppliers')) {
+                showNotification('Access denied: You do not have permission to manage suppliers', true);
+                return;
+            }
+            const suppliers = [...new Set(products.map(p => p.supplier))];
+            showNotification(`Managing ${suppliers.length} suppliers: ${suppliers.join(', ')}`);
+        }
+
+        // QUICK ACTIONS
+        function checkLowStock() {
+            const lowStockItems = products.filter(p => p.quantity < 10);
+            if (lowStockItems.length > 0) {
+                const itemNames = lowStockItems.map(p => p.name).join(', ');
+                showNotification(`⚠️ Low Stock Alert: ${lowStockItems.length} items need attention: ${itemNames}`);
+            } else {
+                showNotification('✅ All items are sufficiently stocked');
+            }
+        }
+
+        function generateStockReport() {
+            const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+            const lowStockCount = products.filter(p => p.quantity < 10).length;
+            
+            showNotification(`📊 Stock Report: ${products.length} items, Total Value: R ${totalValue.toLocaleString('en-ZA', {minimumFractionDigits: 2})}, ${lowStockCount} low stock items`);
+        }
+
+        function refreshAllData() {
+            loadProducts();
+            loadOrders();
+            loadUsers();
+            loadActivityLog();
+            initializeCharts();
+            updateLastUpdated();
+            showNotification('All data refreshed successfully');
+        }
+
+        // ADD PRODUCT FUNCTIONALITY
+        function addProduct(event) {
+            event.preventDefault();
+            
+            if (!currentUser.permissions.includes('add')) {
+                showNotification('Access denied: You do not have permission to add products', true);
+                return;
+            }
+            
+            const newProduct = {
+                id: Date.now(),
+                name: document.getElementById('productName').value,
+                sku: document.getElementById('productSKU').value,
+                category: document.getElementById('productCategory').value,
+                supplier: document.getElementById('productSupplier').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                quantity: parseInt(document.getElementById('productQuantity').value),
+                description: document.getElementById('productDescription').value
+            };
+
+            products.push(newProduct);
+            localStorage.setItem('stockwiseProducts', JSON.stringify(products));
+            
+            closeModal('addProductModal');
+            loadProducts();
+            initializeCharts();
+            document.getElementById('addProductForm').reset();
+            
+            // Log activity
+            logActivity(`${currentUser.name} added new product: ${newProduct.name}`);
+            
+            showNotification('Product added successfully to inventory');
+        }
+
+        // ORDER MANAGEMENT FUNCTIONS
+        function loadOrders() {
+            renderOrdersTable();
+        }
+
+        function renderOrdersTable() {
+            const tbody = document.getElementById('ordersTableBody');
+            tbody.innerHTML = '';
+            
+            orders.forEach(order => {
+                const statusClass = `status-${order.status}`;
+                const row = `<tr>
+                    <td><strong>#${order.id}</strong></td>
+                    <td>${order.customer}</td>
+                    <td>${order.productName}</td>
+                    <td>${order.quantity}</td>
+                    <td><strong>R ${order.total.toLocaleString('en-ZA', {minimumFractionDigits: 2})}</strong></td>
+                    <td>${order.date}</td>
+                    <td><span class="${statusClass}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    <td class="action-cell">
+                        <button class="btn-small btn-edit" onclick="editOrder(${order.id})">Edit</button>
+                        <button class="btn-small btn-delete" onclick="deleteOrder(${order.id})">Delete</button>
+                        ${order.status === 'returned' ? `<button class="btn-small btn-reorder" onclick="showReorderModal(${order.id})">Reorder</button>` : ''}
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function showAddOrderModal() {
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to manage orders', true);
+                return;
+            }
+            
+            const productSelect = document.getElementById('orderProduct');
+            productSelect.innerHTML = '<option value="">Select Product</option>';
+            
+            products.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = `${product.name} (R ${product.price.toLocaleString('en-ZA', {minimumFractionDigits: 2})})`;
+                productSelect.appendChild(option);
+            });
+            
+            document.getElementById('addOrderModal').style.display = 'block';
+        }
+
+        function addOrder(event) {
+            event.preventDefault();
+            
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to manage orders', true);
+                return;
+            }
+            
+            const productId = parseInt(document.getElementById('orderProduct').value);
+            const product = products.find(p => p.id === productId);
+            
+            const newOrder = {
+                id: Date.now(),
+                customer: document.getElementById('orderCustomer').value,
+                productId: productId,
+                productName: product.name,
+                quantity: parseInt(document.getElementById('orderQuantity').value),
+                total: product.price * parseInt(document.getElementById('orderQuantity').value),
+                date: new Date().toISOString().split('T')[0],
+                status: document.getElementById('orderStatus').value
+            };
+
+            orders.push(newOrder);
+            localStorage.setItem('stockwiseOrders', JSON.stringify(orders));
+            
+            closeModal('addOrderModal');
+            loadOrders();
+            document.getElementById('addOrderForm').reset();
+            
+            // Log activity
+            logActivity(`${currentUser.name} created new order #${newOrder.id}`);
+            
+            showNotification('Order created successfully');
+        }
+
+        function editOrder(orderId) {
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to manage orders', true);
+                return;
+            }
+            showNotification('Edit order functionality would open here for order ID: ' + orderId);
+        }
+
+        function deleteOrder(orderId) {
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to manage orders', true);
+                return;
+            }
+            if (confirm('Are you sure you want to delete this order? This action cannot be undone.')) {
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('stockwiseOrders', JSON.stringify(orders));
+                loadOrders();
+                
+                // Log activity
+                logActivity(`${currentUser.name} deleted order #${orderId}`);
+                
+                showNotification('Order deleted successfully');
+            }
+        }
+
+        // REORDER FUNCTIONALITY
+        function showReorderModal(orderId) {
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to reorder products', true);
+                return;
+            }
+            
+            const order = orders.find(o => o.id === orderId);
+            if (!order || order.status !== 'returned') {
+                showNotification('This order cannot be reordered', true);
+                return;
+            }
+            
+            currentReorderOrder = order;
+            const product = products.find(p => p.id === order.productId);
+            
+            document.getElementById('reorderProduct').value = order.productName;
+            document.getElementById('reorderCustomer').value = order.customer;
+            document.getElementById('reorderQuantity').value = order.quantity;
+            document.getElementById('originalPrice').value = product.price;
+            
+            // Set default discount from settings
+            const discountPercentage = document.getElementById('discountPercentage').value || 10;
+            document.getElementById('reorderDiscount').value = discountPercentage;
+            
+            calculateReorderPrice();
+            
+            document.getElementById('reorderModal').style.display = 'block';
+        }
+
+        function calculateReorderPrice() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value);
+            const discountPercentage = parseFloat(document.getElementById('reorderDiscount').value);
+            const quantity = parseInt(document.getElementById('reorderQuantity').value);
+            
+            const newPrice = originalPrice * (1 - discountPercentage / 100);
+            const totalAmount = newPrice * quantity;
+            
+            document.getElementById('newPrice').value = newPrice.toFixed(2);
+            document.getElementById('totalAmount').value = totalAmount.toFixed(2);
+        }
+
+        function processReorder(event) {
+            event.preventDefault();
+            
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to reorder products', true);
+                return;
+            }
+            
+            const order = currentReorderOrder;
+            const product = products.find(p => p.id === order.productId);
+            const newPrice = parseFloat(document.getElementById('newPrice').value);
+            const quantity = parseInt(document.getElementById('reorderQuantity').value);
+            const discountPercentage = parseFloat(document.getElementById('reorderDiscount').value);
+            
+            // Create a new order with discounted price
+            const newOrder = {
+                id: Date.now(),
+                customer: order.customer,
+                productId: order.productId,
+                productName: order.productName,
+                quantity: quantity,
+                total: newPrice * quantity,
+                date: new Date().toISOString().split('T')[0],
+                status: 'pending',
+                note: `Reordered returned product with ${discountPercentage}% discount`
+            };
+
+            orders.push(newOrder);
+            localStorage.setItem('stockwiseOrders', JSON.stringify(orders));
+            
+            closeModal('reorderModal');
+            loadOrders();
+            document.getElementById('reorderForm').reset();
+            
+            // Log activity
+            logActivity(`${currentUser.name} reordered returned product from order #${order.id} with ${discountPercentage}% discount`);
+            
+            showNotification(`Returned product reordered successfully with ${discountPercentage}% discount`);
+        }
+
+        // USER MANAGEMENT FUNCTIONS
+        function loadUsers() {
+            renderUsersTable();
+            renderSettingsUsersTable();
+        }
+
+        function renderUsersTable() {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+            
+            Object.keys(users).forEach(username => {
+                const user = users[username];
+                const roleClass = `role-${user.role}`;
+                const row = `<tr>
+                    <td><strong>${username}</strong></td>
+                    <td>${user.name}</td>
+                    <td>${username}@stockwise.com</td>
+                    <td><span class="${roleClass}">${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span></td>
+                    <td>${new Date().toLocaleDateString()}</td>
+                    <td><span class="in-stock">Active</span></td>
+                    <td class="action-cell">
+                        <button class="btn-small btn-edit" onclick="editUser('${username}')">Edit</button>
+                        <button class="btn-small btn-delete" onclick="deleteUser('${username}')">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function renderSettingsUsersTable() {
+            const tbody = document.getElementById('settingsUsersTableBody');
+            tbody.innerHTML = '';
+            
+            Object.keys(users).forEach(username => {
+                const user = users[username];
+                const roleClass = `role-${user.role}`;
+                const row = `<tr>
+                    <td><strong>${username}</strong></td>
+                    <td>${user.name}</td>
+                    <td><span class="${roleClass}">${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span></td>
+                    <td>${new Date().toLocaleDateString()}</td>
+                    <td class="action-cell">
+                        <button class="btn-small btn-edit" onclick="editUser('${username}')">Edit</button>
+                        <button class="btn-small btn-delete" onclick="deleteUser('${username}')">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function showAddUserModal() {
+            if (!currentUser.permissions.includes('users')) {
+                showNotification('Access denied: You do not have permission to manage users', true);
+                return;
+            }
+            document.getElementById('addUserModal').style.display = 'block';
+        }
+
+        function addUser(event) {
+            event.preventDefault();
+            
+            if (!currentUser.permissions.includes('users')) {
+                showNotification('Access denied: You do not have permission to manage users', true);
+                return;
+            }
+            
+            const username = document.getElementById('userUsername').value;
+            const fullName = document.getElementById('userFullName').value;
+            const email = document.getElementById('userEmail').value;
+            const password = document.getElementById('userPassword').value;
+            const role = document.getElementById('userRole').value;
+            
+            // Default permissions based on role
+            let permissions = ['view'];
+            if (role === 'admin') {
+                permissions = ['view', 'add', 'edit', 'delete', 'reports', 'export', 'suppliers', 'users', 'orders', 'settings'];
+            } else if (role === 'manager') {
+                permissions = ['view', 'add', 'edit', 'reports', 'export', 'orders'];
+            } else if (role === 'staff') {
+                permissions = ['view', 'add'];
+            }
+            
+            users[username] = {
+                password: password,
+                name: fullName,
+                role: role,
+                permissions: permissions
+            };
+            
+            // In a real application, this would be saved to a backend
+            // For this demo, we'll just update the UI
+            loadUsers();
+            closeModal('addUserModal');
+            document.getElementById('addUserForm').reset();
+            
+            // Log activity
+            logActivity(`${currentUser.name} added new user: ${fullName} (${role})`);
+            
+            showNotification('User added successfully');
+        }
+
+        function editUser(username) {
+            if (!currentUser.permissions.includes('users')) {
+                showNotification('Access denied: You do not have permission to manage users', true);
+                return;
+            }
+            showNotification('Edit user functionality would open here for user: ' + username);
+        }
+
+        function deleteUser(username) {
+            if (!currentUser.permissions.includes('users')) {
+                showNotification('Access denied: You do not have permission to manage users', true);
+                return;
+            }
+            if (username === currentUser.username) {
+                showNotification('You cannot delete your own account', true);
+                return;
+            }
+            if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                delete users[username];
+                loadUsers();
+                
+                // Log activity
+                logActivity(`${currentUser.name} deleted user: ${username}`);
+                
+                showNotification('User deleted successfully');
+            }
+        }
+
+        // ACTIVITY LOG FUNCTIONS
+        function loadActivityLog() {
+            const activityLogContainer = document.getElementById('activityLog');
+            activityLogContainer.innerHTML = '';
+            
+            // Sort activities by time (newest first)
+            const sortedActivities = [...activityLog].sort((a, b) => new Date(b.time) - new Date(a.time));
+            
+            sortedActivities.forEach(activity => {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                
+                const time = new Date(activity.time);
+                const timeString = time.toLocaleString('en-ZA');
+                
+                activityItem.innerHTML = `
+                    <div class="activity-icon">${activity.user.charAt(0)}</div>
+                    <div class="activity-details">
+                        <div class="activity-title">${activity.action}</div>
+                        <div class="activity-time">${activity.user} • ${timeString}</div>
+                    </div>
+                `;
+                
+                activityLogContainer.appendChild(activityItem);
+            });
+        }
+
+        function logActivity(action) {
+            const newActivity = {
+                id: Date.now(),
+                user: currentUser.name,
+                action: action,
+                time: new Date().toISOString()
+            };
+            
+            activityLog.unshift(newActivity);
+            localStorage.setItem('stockwiseActivity', JSON.stringify(activityLog));
+            
+            // Update the activity log if it's currently visible
+            if (document.getElementById('activityView').style.display !== 'none') {
+                loadActivityLog();
+            }
+        }
+
+        function clearActivityLog() {
+            if (confirm('Are you sure you want to clear the activity log? This action cannot be undone.')) {
+                activityLog = [];
+                localStorage.setItem('stockwiseActivity', JSON.stringify(activityLog));
+                loadActivityLog();
+                
+                // Log activity
+                logActivity(`${currentUser.name} cleared the activity log`);
+                
+                showNotification('Activity log cleared successfully');
+            }
+        }
+
+        // VIEW MANAGEMENT FUNCTIONS
+        function showDashboardView() {
+            hideAllViews();
+            document.getElementById('dashboardView').style.display = 'block';
+            setActiveNavItem('Dashboard');
+        }
+
+        function showProductsView() {
+            hideAllViews();
+            document.getElementById('productsView').style.display = 'block';
+            setActiveNavItem('Products');
+        }
+
+        function showOrdersView() {
+            if (!currentUser.permissions.includes('orders')) {
+                showNotification('Access denied: You do not have permission to view orders', true);
+                return;
+            }
+            hideAllViews();
+            document.getElementById('ordersView').style.display = 'block';
+            setActiveNavItem('Orders');
+        }
+
+        function showUsersView() {
+            if (!currentUser.permissions.includes('users')) {
+                showNotification('Access denied: You do not have permission to view users', true);
+                return;
+            }
+            hideAllViews();
+            document.getElementById('usersView').style.display = 'block';
+            setActiveNavItem('Users');
+        }
+
+        function showAnalyticsView() {
+            if (!currentUser.permissions.includes('reports')) {
+                showNotification('Access denied: You do not have permission to view analytics', true);
+                return;
+            }
+            hideAllViews();
+            document.getElementById('analyticsView').style.display = 'block';
+            setActiveNavItem('Analytics');
+        }
+
+        function showActivityView() {
+            hideAllViews();
+            document.getElementById('activityView').style.display = 'block';
+            setActiveNavItem('Activity');
+        }
+
+        function showSettingsView() {
+            if (!currentUser.permissions.includes('settings')) {
+                showNotification('Access denied: You do not have permission to view settings', true);
+                return;
+            }
+            hideAllViews();
+            document.getElementById('settingsView').style.display = 'block';
+            setActiveNavItem('Settings');
+        }
+
+        function hideAllViews() {
+            document.getElementById('dashboardView').style.display = 'none';
+            document.getElementById('productsView').style.display = 'none';
+            document.getElementById('ordersView').style.display = 'none';
+            document.getElementById('usersView').style.display = 'none';
+            document.getElementById('analyticsView').style.display = 'none';
+            document.getElementById('activityView').style.display = 'none';
+            document.getElementById('settingsView').style.display = 'none';
+        }
+
+        function setActiveNavItem(itemName) {
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // Add active class to the clicked item
+            const targetItem = Array.from(navItems).find(item => 
+                item.textContent.includes(itemName)
+            );
+            if (targetItem) {
+                targetItem.classList.add('active');
+            }
+        }
+
+        // SETTINGS FUNCTIONS
+        function switchSettingsTab(tabName) {
+            // Deactivate all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Deactivate all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Activate selected tab
+            document.querySelector(`.tab:nth-child(${getTabIndex(tabName)})`).classList.add('active');
+            document.getElementById(`${tabName}Tab`).classList.add('active');
+        }
+
+        function getTabIndex(tabName) {
+            const tabs = {
+                'general': 1,
+                'users': 2,
+                'notifications': 3,
+                'security': 4,
+                'appearance': 5
+            };
+            return tabs[tabName];
+        }
+
+        function saveGeneralSettings() {
+            const companyName = document.getElementById('companyName').value;
+            const currency = document.getElementById('currency').value;
+            const lowStockThreshold = document.getElementById('lowStockThreshold').value;
+            const discountPercentage = document.getElementById('discountPercentage').value;
+            
+            // In a real application, this would be saved to a backend
+            showNotification('General settings saved successfully');
+            
+            // Log activity
+            logActivity(`${currentUser.name} updated general settings`);
+        }
+
+        function saveNotificationSettings() {
+            const emailNotifications = document.getElementById('emailNotifications').checked;
+            const lowStockAlerts = document.getElementById('lowStockAlerts').checked;
+            const orderNotifications = document.getElementById('orderNotifications').checked;
+            const systemAlerts = document.getElementById('systemAlerts').checked;
+            
+            // In a real application, this would be saved to a backend
+            showNotification('Notification settings saved successfully');
+            
+            // Log activity
+            logActivity(`${currentUser.name} updated notification settings`);
+        }
+
+        function saveSecuritySettings() {
+            const sessionTimeout = document.getElementById('sessionTimeout').value;
+            const passwordPolicy = document.getElementById('passwordPolicy').value;
+            const twoFactorAuth = document.getElementById('twoFactorAuth').checked;
+            
+            // In a real application, this would be saved to a backend
+            showNotification('Security settings saved successfully');
+            
+            // Log activity
+            logActivity(`${currentUser.name} updated security settings`);
+        }
+
+        function saveAppearanceSettings() {
+            const accentColor = document.getElementById('accentColor').value;
+            const fontSize = document.getElementById('fontSize').value;
+            
+            // In a real application, this would be saved to a backend
+            showNotification('Appearance settings saved successfully');
+            
+            // Log activity
+            logActivity(`${currentUser.name} updated appearance settings`);
+        }
+
+        function generateAnalyticsReport() {
+            if (!currentUser.permissions.includes('reports')) {
+                showNotification('Access denied: You do not have permission to generate reports', true);
+                return;
+            }
+            
+            const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+            const lowStockCount = products.filter(p => p.quantity < 10).length;
+            const totalOrders = orders.length;
+            const completedOrders = orders.filter(o => o.status === 'completed').length;
+            const returnedOrders = orders.filter(o => o.status === 'returned').length;
+            
+            showNotification(`📊 Analytics Report Generated: ${products.length} products (R ${totalValue.toLocaleString('en-ZA', {minimumFractionDigits: 2})}), ${lowStockCount} low stock items, ${totalOrders} total orders (${completedOrders} completed, ${returnedOrders} returned)`);
+            
+            // Log activity
+            logActivity(`${currentUser.name} generated analytics report`);
+        }
+
+        // THEME FUNCTIONS
+        function toggleTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const isLightMode = document.body.classList.toggle('light-mode');
+            
+            themeToggle.classList.toggle('active');
+            
+            if (isLightMode) {
+                localStorage.setItem('stockwiseTheme', 'light');
+            } else {
+                localStorage.setItem('stockwiseTheme', 'dark');
+            }
+            
+            // Log activity
+            logActivity(`${currentUser.name} switched to ${isLightMode ? 'light' : 'dark'} mode`);
+        }
+
+        // UTILITY FUNCTIONS
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
 
         function showNotification(message, isError = false) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.style.display = 'block';
-            if (isError) notification.classList.add('error');
+            
+            if (isError) {
+                notification.classList.add('error');
+            } else {
+                notification.classList.remove('error');
+            }
             
             setTimeout(() => {
                 notification.style.display = 'none';
-                notification.classList.remove('error');
-            }, 3000);
+            }, 5000);
         }
 
-        // Initialize dashboard view
-        showDashboardView();
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
     </script>
 </body>
 </html>
